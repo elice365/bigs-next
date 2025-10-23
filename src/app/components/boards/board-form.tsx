@@ -28,6 +28,7 @@ const schema = z.object({
     }),
 });
 
+type BoardFormFieldValues = z.input<typeof schema>;
 export type BoardFormValues = z.infer<typeof schema>;
 
 interface BoardFormProps {
@@ -67,7 +68,7 @@ export function BoardForm({
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<BoardFormValues>({
+  } = useForm<BoardFormFieldValues, undefined, BoardFormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
       title: defaultValues?.title ?? "",

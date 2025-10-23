@@ -4,7 +4,9 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { AuthTokens, AuthUser } from "../types";
 
-interface AuthState extends Partial<AuthTokens> {
+interface AuthState {
+  accessToken: string | null;
+  refreshToken: string | null;
   user: AuthUser | null;
   isHydrated: boolean;
   setAuth: (tokens: AuthTokens & { user?: AuthUser }) => void;
